@@ -1,8 +1,57 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-using namespace std;    
+using namespace std;   
 
+// BRUTE FORCE SOLUTION =  time limit exceeded
+// T.C = O(N * (max - min + 1)) , S.C = O(1)
+class BruteSolution {
+private:
+    bool canMakeBouquets(vector<int>& bloomDay, int m ,int k, int mid){
+        bool canMake = false;
+        int cnt = 0 , n = bloomDay.size(), noOfBouquets = 0;
+        for(int i=0; i<n; i++){
+            if(bloomDay[i]<= mid){
+                cnt++;
+                if(cnt == k){
+                    noOfBouquets++;
+                    cnt=0; // Reset count after making a bouquet
+                }
+    
+            }
+            else{
+                cnt =0;  // Reset count if we can't make a bouquet
+            }
+            
+            
+        }
+        if(noOfBouquets >= m) {
+            canMake = true;
+        }
+        return canMake;
+        
+    }
+
+public :
+    int minDays(vector<int>& bloomDay , int m, int k){
+        long long n = bloomDay.size();
+        long long val = 1LL *m*k;
+        if(val > n){
+            return -1;
+        }
+
+        for(int i = *min_element(bloomDay.begin(), bloomDay.end()); i <= *max_element(bloomDay.begin(), bloomDay.end()); i++){
+            if(canMakeBouquets(bloomDay, m, k, i)){
+                return i; // Return the first day we can make m bouquets
+            }
+        }
+        return -1; // If no such day is found
+
+    }
+};
+
+
+// OPTIMAL SOL   =  T.C = O( N *  log(max - min +1)) , S.C = O(1)
 class Solution {
 private:
     bool canMakeBouquets(vector<int>& bloomDay, int m ,int k, int mid){
@@ -15,6 +64,7 @@ private:
                     noOfBouquets++;
                     cnt=0; // Reset count after making a bouquet
                 }
+    
             }
             else{
                 cnt =0;  // Reset count if we can't make a bouquet
@@ -33,8 +83,10 @@ private:
 public:
     int minDays(vector<int>& bloomDay, int m, int k) {
         int n = bloomDay.size();
-        if(m*k >n){
-            return -1; // Not enough flowers to make m bouquets
+        // directly m*k use krne pr , error = because of overflow ;       
+        long long val = 1LL * m * k; // Use long long to avoid overflow of "val"
+        if(val >n){      //   wrong code =  if(m*k >n)
+            return -1;   //   Not enough flowers to make m bouquets
         }
         // instead of low =1 , use low = min_element
         int l = *min_element(bloomDay.begin(), bloomDay.end()) , h = *max_element(bloomDay.begin(), bloomDay.end()); 

@@ -7,66 +7,44 @@ class Node{
     Node* next;
 
     Node(int d, Node* n = nullptr){
-        data  = d;
-        next = nullptr;
+        data = d;
+        next = n;
     }
 
+
 };
-// when k is given as position
-class Solution {
-public:
-    Node* deleteNode(Node* head,int k) {
-        if (head == nullptr){
+
+class Solution{
+  public:
+    Node* deleteNode(Node* head , int k){
+        if(head == nullptr){
             return nullptr;
         }
-        if(k==1){
+        else if(k==1){
             Node* temp = head;
-            head = head->next;
+            head - head->next;
             delete temp;
             return head;
         }
-
-        int cnt=0;
+        int cnt =0;
         Node* prev = nullptr;
         Node* curr = head;
-        while(curr!= nullptr){
+        while(curr != nullptr && cnt <= k){
             cnt++;
-            
             if(cnt==k){
-                prev->next = prev->next->next;
+                prev-> next = prev->next->next;
                 delete curr;
-                
                 break;
             }
-            prev = curr;
-            curr= curr->next;
+            else{
+                prev = curr;
+                curr = curr->next;}
         }
         return head;
-
     }
+
 };
 
-
-// when node to be deleted is given directly
-class Solution2 {
-public:
-    void deleteNode(Node* node) {
-        Node* temp = node;
-        node->data = node->next->data;
-        
-        node->next = node->next->next;
-       
-        delete temp->next;
-    }
-};
-
-// when value to be deleted is given 
-class Solution3{
-  public:
-    Node* deleteNode(Node* head , int val){
-        
-    }
-};
 
 int main(){
     Node* head = new Node(1);
@@ -83,8 +61,8 @@ int main(){
 
     
 
-    Solution2 sol;
-    sol.deleteNode(head->next->next); // Deleting node with value 3
+    Solution sol;
+    sol.deleteNode(  head , 4); // Deleting node with value 3
 
     Node* temp = head;
     while(temp != nullptr){ 

@@ -11,7 +11,8 @@ class ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-
+// T.C = O(N + N/2 ) 
+// S.C = O(1) 
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -28,17 +29,42 @@ public:
             temp = temp->next;
         }
 
-        int mid = ceil((cnt+1)/2);
+        int mid = cnt/2 +1 ;
 
-        cnt = 0;
+        int cnt2 = 1;
         ListNode* temp2 = head;
-        while(cnt<= mid){
+        while(cnt2< mid){
             temp2 = temp2->next;
-            cnt++;
+            cnt2++;
         }
 
         return temp2;
     }
+};
+
+
+// Tortoise/Hare    or   Slow /Fast  approach
+
+// Optimal approach  =  T.C = O(N) , S.C = O(1)
+class Solution2 {   
+  public:
+    ListNode* middleNode(ListNode* head) {
+        if(head== nullptr){
+            return nullptr;
+        }
+        if(head->next == nullptr){
+            return head;
+        }
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while(fast!= nullptr && fast->next != nullptr){
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        return slow;
+    }
+
 };
 
 
@@ -48,21 +74,19 @@ int main(){
     ListNode* third = new ListNode(3);
     ListNode* fourth = new ListNode(4);
     ListNode* fifth = new ListNode(5);
+    ListNode* sixth = new ListNode(6);
+
 
 
     head->next = second;
     second->next = third;
     third-> next = fourth;
     fourth-> next = fifth;  
-    fifth-> next = nullptr;
+    fifth-> next = sixth;
+    sixth-> next = nullptr;
 
-    Solution sol;
+    Solution2 sol;
     ListNode* ans = sol.middleNode(head);
     cout<< ans->val << endl;
-
-    
-
-  
-    
 
 }

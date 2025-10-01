@@ -1,5 +1,6 @@
 #include <iostream>
 #include<unordered_set>
+#include<vector>
 using namespace std;
 
 class ListNode {
@@ -84,6 +85,45 @@ public:
 };
 
 
+// OPTIMAL APPROACH = T.C = O(N) , S.C = O(1)
+// Fast and Slow pointer approach
+
+/*
+A slow pointer that moves one step at a time.
+
+A fast pointer that moves two steps at a time.
+
+If there is a cycle, the fast pointer will eventually lap the slow pointer and they will meet. 
+If there's no cycle, the fast pointer will reach the end of the list.
+*/
+class Solution4 {
+public:
+    bool hasCycle(ListNode *head) {  
+        if(head == nullptr || head->next == nullptr){
+            return false;
+        }
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while (fast != nullptr && fast->next != nullptr){ 
+            //  pehle change the pointers 
+            // agar pehle check karenge ki they are equal or not , then it will always be true kyunki dono head pe hi start ho rahe hain
+            // so, we will first move the pointers and then check if they are equal or not
+            slow = slow->next;
+            fast = fast->next -> next ;
+
+            
+            if(slow == fast){
+                return true;
+            }
+            
+        }
+              
+        return false;
+    }
+};
+
 
 
 
@@ -103,7 +143,7 @@ int main(){
 
     
 
-    Solution sol;
+    Solution4 sol;
     cout <<  sol.hasCycle(  head); // Deleting 4th element from end
 
 

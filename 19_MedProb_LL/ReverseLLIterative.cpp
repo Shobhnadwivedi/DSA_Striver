@@ -68,7 +68,7 @@ public:
 
         ListNode* prev = nullptr;
         ListNode* curr = head;
-        ListNode* forward;;
+        ListNode* forward;
 
         while(curr){
             forward = curr -> next;

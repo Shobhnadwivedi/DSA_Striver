@@ -73,3 +73,42 @@ public:
                     
     }
 };
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> st;
+        for(auto it: s){
+            if(it=='('  || it == '{'  || it == '['){
+                st.push(it);
+            }
+
+            else{
+                char top_char = st.top();
+                if(st.empty()){ return false;}
+                // can't put the line - " char top_char = st.top(); " 
+                // here bcuz , if/elsse if/ else ke beech mein koi normal statement nahi hona chahiye
+                else if((  it ==')' && top_char =='('  )  ||  
+                   (  it =='}' && top_char =='{'  )  ||  
+                   (  it ==']' && top_char =='['  )         ){
+
+                    st.pop();;
+                }
+                else{
+                    st.push(it);
+                }
+            }
+        }
+
+        
+
+        return st.empty();
+    }
+};

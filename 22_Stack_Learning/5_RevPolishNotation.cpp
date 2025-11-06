@@ -24,12 +24,7 @@ public:
                     st.push(top1- top2) ;
                 }
                 else if(it== "/"){
-                    if(top1< top2 ){
-                        st.push(0); // integer division
-                    }
-                    else{
-                        st.push(top1 / top2);
-                    }
+                    st.push(top1 / top2);
                 }
                 else {
                     st.push(top1 * top2);

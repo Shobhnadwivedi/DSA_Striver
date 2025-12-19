@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug C++ (LLDB Terminal)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "cwd": "${fileDirname}",
+      "args": [],
+      "preLaunchTask": "Build C++",
+      "console": "integratedTerminal"
+    }
+  ]
+}

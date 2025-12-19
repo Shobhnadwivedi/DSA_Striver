@@ -20,7 +20,11 @@ class Solution {
                 
                 
             }
+            
             // swap  arr[i] and arr[min]
+            // if i take min = arr[i] and swap (arr[j], min) directly then it will not swap in 
+            // the original array as min is just a variable storing the value not the reference of that index.
+            
             int temp= arr[min];
             arr[min] = arr[i];
             arr[i]= temp;

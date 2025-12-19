@@ -25,7 +25,21 @@ class Solution {
     }
 };
 
+
+class Solution2 {
+    public:
+    void name(int N){
+        if(N==0){
+            return;
+        }
+        cout << "GFG " ;
+        name(N-1) ;
+    }
+};
+
+
+
 int main(){
-    Solution nameprinter;
+    Solution2 nameprinter;
     nameprinter.name(5);
 }

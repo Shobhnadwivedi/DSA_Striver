@@ -22,7 +22,7 @@ int main(){
     Node* ptr = head;
 
 
-    for(int i=1; i< size(arr); i++){
+    for(int i=1; i< sizeof(arr)/sizeof(arr[0]); i++){
         Node* temp = new Node(arr[i]);
         ptr-> next = temp;  // linking the new node to the previous node
 

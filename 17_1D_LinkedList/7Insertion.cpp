@@ -41,6 +41,47 @@ class Solution2{
     }
 };
 
+// Insertion at position k
+
+void insertAtK(Node* &head, int k,int x){
+
+    if(k<=0){
+        return;
+    }
+   
+    Node* newnode = new Node(x);
+    
+    if(k==1){
+        newnode->next = head;
+        head = newnode;
+        return;
+    }
+
+    int cnt =1;
+    Node* curr = head;
+
+    // pehle traverse till (k-1)th node 
+    // by the condition ( cnt < k-1 ) , the last loop will run under condition cnt = k-2 , 
+    // and since (k-2) < (k-1) , the loop will run one more time and curr will point to (k-1)th node
+
+    while(curr && cnt<k-1){
+        curr = curr->next;
+        cnt++;
+    }
+
+    if(curr == nullptr){         //  mtlb k is more than length of ll 
+        delete newnode;
+        return; 
+    }
+
+    newnode->next = curr->next;
+    curr->next = newnode;
+    
+
+} 
+
+
+
 int main(){
     Node* head = new Node(1);
     Node* second = new Node(2);

@@ -19,7 +19,7 @@ class ListNode {
 
 
 //  inefficient solution using stack 
-// time complexity O(n) and space complexity O(n) = Due to stack
+// time complexity O(2n) and space complexity O(n) = Due to stack
 class Solution1 {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -71,8 +71,14 @@ public:
         ListNode* forward;
 
         while(curr){
+
+            //   1.   curr->next stored in forw , so after reversing of this portion , curr can be updated to curr->next.
             forward = curr -> next;
+
+            //   2. aage ka pointer(curr->next) ko peeche link krna ....to the prev node
             curr->next = prev;
+
+            //   3. prev and curr ko aage badhana
             prev = curr;
             curr = forward; 
         }

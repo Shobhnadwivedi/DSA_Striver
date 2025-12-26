@@ -22,3 +22,81 @@ Internally, pos is used to denote the index of the node that tail's next pointer
 It is -1 if there is no cycle. Note that pos is not passed as a parameter.
 
 */
+
+
+// Brute force Approach : Using Hashing (unordered_set ya map can also be used - unordered_map<ListNode*, count> )
+
+class Solution1 {
+  public:
+    ListNode *detectCycle(ListNode *head) {
+
+      if(head==nullptr || head->next==nullptr){
+        return nullptr;
+      }
+
+      unordered_set<ListNode*> s1 ;
+      ListNode* temp = head;
+
+      while(temp){
+        if(s1.count(temp)){
+          return temp;
+        }
+        s1.insert(temp);
+        temp = temp->next;
+      }
+
+      return nullptr;
+    }
+};
+
+
+// Optimal Approach : Tortoise and Hare Algorithm 
+
+// first check if cycle is present or not
+// if cycle is present , then find the starting point of the cycle  
+
+// Logic : jab slow and fast mil jatey h , we place any one pointer at head again and keep other at meeting point only , 
+// and then move both of them one step at a time , where they meet again is the starting point of the cycle
+
+
+class Solution2{
+  public:
+    ListNode* detectCycle(ListNode* head){
+      if(head==nullptr || head->next==nullptr){
+        return nullptr;
+      }
+
+      ListNode* slow = head;
+      ListNode* fast = head;
+
+      // step 1 : check if cycle is present or not 
+
+      bool isCycle = false;
+
+      while(fast!=nullptr && fast->next!=nullptr){
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if(slow == fast){
+          isCycle = true;
+          break;
+        }
+      }
+
+      // step 2 : if cycle is present , find the starting point of the cycle 
+
+      if(isCycle){
+        slow = head;
+
+        while(slow != fast){
+          slow = slow->next;
+          fast = fast->next;
+        }
+
+        return slow; // starting point of the cycle 
+      }
+
+      return nullptr; // no cycle present
+    }
+
+};

@@ -13,7 +13,7 @@ void merge(vector<int> &arr, int l, int mid, int r) {
     while (left <= mid && right <= r) {
         if (arr[left] <= arr[right]) {
             temp.push_back(arr[left]);
-            left++;
+            left++; 
         }
         else {
             temp.push_back(arr[right]);

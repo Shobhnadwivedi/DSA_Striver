@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 
 
@@ -93,7 +94,7 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         ListNode* finalmerged = lists[0];
         
-        for(int i = 0 ; i< lists.size(); i++){
+        for(int i = 1 ; i< lists.size(); i++){
             finalmerged = merge2SortedLL(finalmerged, lists[i]);
 
         }
@@ -101,4 +102,36 @@ public:
     }
 };
 
+// Solution 3 - Using priority queue (Min Heap)
+// P riority queue ka top gives the minimum of all
 
+class Solution{
+  public:
+    ListNode* mergeKLists(vector<ListNode*> &lists){
+        priority_queue<
+            pair<int, ListNode*>,
+            vector<pair<int, ListNode*>>,
+            greater<pair<int, ListNode*>>
+        > pq;
+        for(int i=0; i< lists.size();i++){
+            if(lists[i] != nullptr){
+                pq.push({lists[i]->val, lists[i]});
+            }
+        }
+
+        ListNode* merged = new ListNode(-1);
+        ListNode* temp = merged;
+
+        while(!pq.empty()){
+            pair<int, ListNode*> p = pq.top();
+            pq.pop();
+
+            if(p.second->next != nullptr){
+                pq.push({ p.second->next->val, p.second->next });
+            }
+            temp->next = p.second;
+            temp = temp->next;
+        }
+        return merged->next;
+    }
+};

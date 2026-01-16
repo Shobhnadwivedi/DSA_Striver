@@ -40,7 +40,7 @@ class Solution2{
     
 };
 
-class Solution {
+class Solution1 {
   public:
     // Function to find factorial numbers less than or equal to N.
     vector<long long> factorialTrueSolution(long long n) {
@@ -65,24 +65,33 @@ class Solution {
 class Solution{
     public:
     int k=1, fac=1;
-    vector<long long> factorialNumbers(long long n){
-    
-    if (fac > n) {
-        return {};
-    }
-    k++;
-    fac = fac * factorialNumbers(k);
-    }
+    vector<long long> ans;
+    vector<long long> factorialNumbers(long long n) {
+        
+        
+        if (fac >= n) {
+            return ans;
+        }
+        
+        fac = fac * k;
+        ans.push_back(fac);
+        k++;
+        
+        return factorialNumbers(n);
+        }
     
 };   
         
 
 
-
-
 int main(){
 
 Solution sol;
-sol.factorialNumbers(24);
+vector<long long> res = sol.factorialNumbers(24);
+
+for(int i=0; i<res.size(); i++){
+    cout << res[i] << ' ';
  
+}
+
 }

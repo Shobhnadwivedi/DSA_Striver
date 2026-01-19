@@ -62,23 +62,26 @@ class Solution1 {
     }
 };
 
+
+// OPTIMAL SOLUTION - Recursion
 class Solution{
     public:
-    int k=1, fac=1;
+    long long k=1, fac=1;     // Runtime error occured when i took int instead of long long , bcuz factorial can go upto very large number
     vector<long long> ans;
     vector<long long> factorialNumbers(long long n) {
         
-        
+        fac = fac * k;      // here sabse pehle fac calculate krna hai, then base condition krna h, agr baad mein fac calculate karenge to answer mein extra element chala jayega
+        k++;
+
         if (fac >= n) {
             return ans;
         }
         
-        fac = fac * k;
-        ans.push_back(fac);
-        k++;
+        ans.push_back(fac);   // fac ko push base condition ke baad hi krna hai, taaki extra element na chala jaye answer mein
         
         return factorialNumbers(n);
-        }
+
+    }
     
 };   
         

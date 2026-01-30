@@ -45,6 +45,47 @@ public:
     }
 };
 
+//  RECURSIVE SOLUTION
+class Solution2{
+  public:
+
+    int helper(string &s, int i , long long num, int sign){
+
+        if(i>= s.size() || !isdigit(s[i])){
+            return num * sign ;
+        }
+
+        int digit = s[i] - '0' ;
+        num = num *10 + digit ;
+
+        if(sign*num < INT_MIN){ return INT_MIN ;}
+        if(sign*num > INT_MAX){ return INT_MAX ;}
+
+        return helper(s, i+1, num , sign);
+    }
+    int myAtoi(string s) {
+        int i = 0;
+
+        while(s[i]==' ' && i < s.size()){
+            i++;
+        }
+
+        int sign= 1;
+        if(s[i] == '-'){
+            sign = -1 ;
+            i++;
+        }
+        else if(s[i] == '+'){
+            i++;
+        }
+
+        long long num = 0 ;
+        
+        return helper(s, i , num , sign);
+    }
+    
+};
+
 
 int main(){
     string str= "-42";

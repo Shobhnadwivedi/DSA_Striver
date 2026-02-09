@@ -14,14 +14,24 @@ void sortStack(stack<int>& s){
 
     sortStack(s);
 
-    if(removed >= s.top() || s.empty()){
+    if( s.empty()|| removed >= s.top() ){
         s.push(removed) ;
+        return;
     }
     else{
         int badme = s.top() ;
         s.pop();
-        s.push(removed) ;
-        s.push(badme) ;
+        if(s.empty() || removed >= s.top()){
+            s.push(removed);
+            s.push(badme) ;
+            return;
+        }
+        else{
+            s.push(removed) ; 
+            sortStack(s);
+            s.push(badme);
+            return;
+        }
     }
 }
 

@@ -13,7 +13,7 @@ public:
         long long cnt =0;
 
         if(n%2 == 0){
-            cnt = (int)pow(20, n/2) % 1000000007 ;    // without int = error : cannot do :  "double" % "int"
+            cnt = (int)pow(20, n/2) % 1000000007 ;    // without int -> error : cannot do :  "double" % "int"
         }
 
         else{                                //  pow() uses floating-point math    ;    For large exponents, results are approximate.  ;    Modulo arithmetic requires exact integers
@@ -27,8 +27,19 @@ public:
     }
 };
 
+// we can't use normal exponentiation method as     -    O(exponent ) time complexity not feasible for large exponents ;  Numbers become astronomically large
+// hence we will use modular exponentiation method
+// in most problems we don't even need the actual large number , we just need it modulo m  -    (  a^b mod m  )
 
-class Solution {
+
+// One of the most important properties of modular arithmetic is:    (a×b) mod m = ( (a mod m) × (b mod m) ) mod m      ;   reducing numbers at every step(multiplication) and never let them explode.
+// 1. Clculate binary representation of exponent  =  e.g    a^13   ; 13 = 1101 in binary = 8 + 4 + 0 + 1
+// And we can compute    a^1  ,  a^2  ,   a^3 ... very easily by squaring previous result   ;   T.C : O(log exp) steps
+
+
+
+
+class Solution2 {
 public:
     string dectobinary(int n){
 
@@ -48,8 +59,8 @@ public:
 
 
 // take 3 parameters : base  ; exp  ; mod 
-// convert exp into binary 
-// iterate from back to front of binary representation of b
+// convert exp into binary string using dectobinary function
+// iterate from back to front of binary representation of exp 
 // keep squaring the base and taking mod m and multiply when bit is 1
 
     int modularpow(long long base, long long exp, long long mod) {
@@ -71,12 +82,12 @@ public:
             long long cnt =0;
 
             if(n%2 == 0){
-                cnt = (int)modularpow(20, n/2,1000000007) % 1000000007 ;    
+                cnt = (long long )modularpow(20, n/2,1000000007) % (long long )1000000007 ;    
             }
 
             else{                               
 
-                cnt = (int)modularpow(20, n/2, 1000000007) * 5 % 1000000007 ;   
+                cnt = (long long )modularpow(20, n/2, 1000000007) * 5 % (long long )1000000007 ;   
             }
 
             return cnt  ;
@@ -85,7 +96,7 @@ public:
 };
 int main(){
     long long n = 17 ;
-    Solution sol ;
+    Solution2 sol ;
     cout<< sol.countGoodNumbers(n) ;
 
 }

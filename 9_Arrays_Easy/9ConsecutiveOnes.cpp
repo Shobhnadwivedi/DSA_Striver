@@ -3,24 +3,23 @@
 #include <algorithm>  // for std::max_element
 using namespace std;
 
+
+//. T.C = O(n)  - single pass   , S.C = O(1)  - in place changes
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
-        vector<int> temp;
-        int cnt=0;
-        for(int i=0; i< nums.size();i++){
+        int maxim =0, cnt =0;
+        for(int i=0; i< nums.size() ; i++){
             if(nums[i]==1){
-                if( nums[i-1]!=1){
-                    temp.push_back(cnt);
-                    cnt =0;
-                }
                 cnt++;
-                temp.push_back(cnt);
+                maxim = max(maxim, cnt);
+            }
+            else{
+                cnt=0;
             }
         }
 
-
-        return *max_element(temp.begin(),temp.end());
+        return maxim ;
     }
 };
 

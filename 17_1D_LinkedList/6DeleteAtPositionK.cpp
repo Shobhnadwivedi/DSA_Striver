@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class TreeNode{
   public:
     int data;
-    Node* next;
+    TreeNode* next;
 
-    Node(int d, Node* n = nullptr){
+    TreeNode(int d, TreeNode* n = nullptr){
         data  = d;
         next = nullptr;
     }
@@ -15,20 +15,20 @@ class Node{
 // when k is given as position
 class Solution {
 public:
-    Node* deleteNode(Node* head,int k) {
+    TreeNode* deleteNode(TreeNode* head,int k) {
         if (head == nullptr){
             return nullptr;
         }
         if(k==1){
-            Node* temp = head;
+            TreeNode* temp = head;
             head = head->next;
             delete temp;
             return head;
         }
 
         int cnt=0;
-        Node* prev = nullptr;
-        Node* curr = head;
+        TreeNode* prev = nullptr;
+        TreeNode* curr = head;
         while(curr!= nullptr){
             cnt++;
             
@@ -50,8 +50,8 @@ public:
 // when node to be deleted is given directly
 class Solution2 {
 public:
-    void deleteNode(Node* node) {
-        Node* temp = node;
+    void deleteNode(TreeNode* node) {
+        TreeNode* temp = node;
         node->data = node->next->data;
         
         node->next = node->next->next;
@@ -63,17 +63,17 @@ public:
 // when value to be deleted is given 
 class Solution3{
   public:
-    Node* deleteNode(Node* head , int val){
+    TreeNode* deleteNode(TreeNode* head , int val){
         
     }
 };
 
 int main(){
-    Node* head = new Node(1);
-    Node* second = new Node(2);
-    Node* third = new Node(3);
-    Node* fourth = new Node(4);
-    Node* fifth = new Node(5);
+    TreeNode* head = new TreeNode(1);
+    TreeNode* second = new TreeNode(2);
+    TreeNode* third = new TreeNode(3);
+    TreeNode* fourth = new TreeNode(4);
+    TreeNode* fifth = new TreeNode(5);
 
     head->next = second;
     second->next = third;
@@ -86,7 +86,7 @@ int main(){
     Solution2 sol;
     sol.deleteNode(head->next->next); // Deleting node with value 3
 
-    Node* temp = head;
+    TreeNode* temp = head;
     while(temp != nullptr){ 
         cout<< temp->data << " ";
         temp = temp->next;

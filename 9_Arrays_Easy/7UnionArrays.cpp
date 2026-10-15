@@ -125,11 +125,11 @@ class Solution4 {
 
 
 int main(){
-    vector<int> arr1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    vector<int> arr1 = {2, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     vector<int> arr2 = {2, 3, 4, 4, 5, 11, 12};
 
-    Solution4 res ;
-    res.intersection(arr1, arr2);
+    Solution3 res ;
+    res.findunion(arr1, arr2);
     
     
 

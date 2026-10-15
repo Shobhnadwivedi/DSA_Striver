@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
 
-class Node{
+class TreeNode{
   public:
 
     int data;
-    Node* next;
+    TreeNode* next;
 
-    Node(int d){
+    TreeNode(int d){
         data = d;
         next = nullptr;
     }
@@ -17,9 +17,9 @@ class Node{
 // Count nodes in Linked List
 class Solution {
   public:
-    int getCount(Node* head) {
+    int getCount(TreeNode* head) {
         // Code here
-        Node* ptr = head;
+        TreeNode* ptr = head;
         int cnt;
 
         while(ptr){
@@ -34,10 +34,10 @@ class Solution {
 // Search in Linked List
 class Solution2 {
   public:
-    bool searchKey(Node* head, int key) {
+    bool searchKey(TreeNode* head, int key) {
         // Code here
         bool isthere= false;
-        Node* ptr = head;
+        TreeNode* ptr = head;
         
         while(ptr != nullptr){
             if(ptr->data == key){

@@ -1,10 +1,10 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class TreeNode{
  public: 
     int data;
-    Node* next;
+    TreeNode* next;
 
 /*  constructor to initialize the node 
     // in C++ constructor has same name as class
@@ -18,7 +18,7 @@ class Node{
 
 */
     // 2nd constructor to initialize the node with only data
-    Node(int d){
+    TreeNode(int d){
         data= d;
         next = nullptr;
     }
@@ -38,9 +38,9 @@ Node* y = new Node(10) ;   // here 10 is the data part and next part is initiali
 
 int main(){
 
-    Node* head = new Node(1); 
+    TreeNode* head = new TreeNode(1); 
 
-    Node* second = new Node(2);
+    TreeNode* second = new TreeNode(2);
 
     head->next = second ; // linking first node to second node
 

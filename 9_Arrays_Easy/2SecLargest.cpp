@@ -61,14 +61,15 @@ int getSecondLargest1(vector<int> &arr) {
     quickSort(arr,l,h);    // arr has been sorted now
 
      
-    for(int i=h-1; i>=0; i++){
+    for(int i=h-1; i>=0; i--){
         if(arr[i] != arr[h]){
             int sec_larg = arr[i];
             return sec_larg;
-            break;
+            
         }
-        else return -1;
-    }                                               
+        
+    } 
+    return -1;                                              
     
 }
     
@@ -119,6 +120,19 @@ int getSecondLargest3(vector<int> &arr) {
     return min;
 }
 
+int getSecondLargest4(vector<int> &arr){
+    int n = arr.size();
+    int larg = arr[0];
+    int sec = INT_MIN;
+
+    for(int i= 1 ; i<= n-1; i++){
+        if(arr[i] > larg && larg > sec){
+            sec = larg;
+            larg = arr[i];
+        }
+    }
+}
+
 
 int main(){
     vector<int> arr = {5,9,6,10,10};
@@ -126,7 +140,7 @@ int main(){
     int h= arr.size()-1;
     quickSort(arr,l,h);    // arr has been sorted now
 
-    int sec_largest = getSecondLargest2(arr);
+    int sec_largest = getSecondLargest1(arr);
     cout<< sec_largest<< " ";
 
     

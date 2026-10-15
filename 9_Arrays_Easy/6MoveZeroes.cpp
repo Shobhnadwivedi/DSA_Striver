@@ -25,7 +25,7 @@ class Solution1 {
     }
 };
 
-// T.C =  O(N )   - while loop runs n times    and insert() function takes O(cnt)
+// T.C =  O(N^2 )   - while loop runs n times    and insert() function takes O(cnt)
 // S.C =  O(1 )
 class Solution2 {
     public:
@@ -45,7 +45,11 @@ class Solution2 {
         }
     };
 
-class Solution {
+
+    // OPTIMAL SOLUTION = TWO POINTERS APPROACH
+    // T.C = O(n)  - single pass
+    // S.C = O(1)  - in place changes
+class Solution3 {
     public:
         void moveZeroes(vector<int>& nums) {
             int i;
@@ -77,9 +81,30 @@ class Solution {
         }
 };
 
+
+
+//          OPTIMAL SOLUTION = TWO POINTERS APPROACH
+class Solution4 {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i=0;
+
+        for(int j = 0; j< nums.size(); j++){
+            if(nums[j] != 0){
+                swap(nums[j], nums[i]);
+
+                i++;
+            }
+        }
+    }
+};
+
+
+
+
 int main(){
     vector<int> nums = {5,0,4,0,6,1};;
-    Solution sol ;
+    Solution4 sol ;
     sol.moveZeroes(nums);
     
     for (int i=0;i< nums.size() ;i++){

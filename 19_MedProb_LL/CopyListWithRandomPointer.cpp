@@ -2,33 +2,33 @@
 #include<unordered_map>
 using namespace std;
 
-class Node {
+class TreeNode {
   public:
     int val;
-    Node *next;
-    Node* random;
+    TreeNode *next;
+    TreeNode* random;
 
     // different constructors
-    Node() : val(0), next(nullptr), random(nullptr) {}
-    Node(int x) : val(x), next(nullptr) , random(nullptr) {}
-    Node(int x, Node *next) : val(x), next(next) , random(nullptr) {}
-    Node(int x, Node *next, Node* random) : val(x), next(next) , random(random) {}
+    TreeNode() : val(0), next(nullptr), random(nullptr) {}
+    TreeNode(int x) : val(x), next(nullptr) , random(nullptr) {}
+    TreeNode(int x, TreeNode *next) : val(x), next(next) , random(nullptr) {}
+    TreeNode(int x, TreeNode *next, TreeNode* random) : val(x), next(next) , random(random) {}
 
 };
 
 
 class Solution {
 public:
-    Node* copyRandomList(Node* head) {
+    TreeNode* copyRandomList(TreeNode* head) {
         if(head == nullptr){
             return nullptr;
         }
 
-        Node* temp = head;
-        unordered_map<Node*, Node*> mp;
+        TreeNode* temp = head;
+        unordered_map<TreeNode*, TreeNode*> mp;
 
         while(temp){
-            Node* newnode = new Node(temp->val);
+            TreeNode* newnode = new TreeNode(temp->val);
             mp[temp]= newnode;
             temp = temp->next;
         }
@@ -49,16 +49,16 @@ public:
 
 class Solution2 {
 public:
-    Node* copyRandomList(Node* head) {
+    TreeNode* copyRandomList(TreeNode* head) {
         if(head == nullptr){
             return nullptr;
         }
 
-        Node* temp = head;
+        TreeNode* temp = head;
 
         while(temp){
-            Node* a = temp->next;
-            temp->next = new Node(temp->val);
+            TreeNode* a = temp->next;
+            temp->next = new TreeNode(temp->val);
             temp->next->next = a;
             temp = a;        //  or temp = temp->next->next;
         }
@@ -72,11 +72,11 @@ public:
             temp = temp->next ->next;
         }
 
-        Node* dummy = new Node(0);
-        Node* temp2 = dummy;
+        TreeNode* dummy = new TreeNode(0);
+        TreeNode* temp2 = dummy;
         temp = head;
         while(temp){
-            Node* a = temp->next->next;
+            TreeNode* a = temp->next->next;
             temp2 ->next = temp->next;
             temp2 = temp2->next;
             temp ->next = a;

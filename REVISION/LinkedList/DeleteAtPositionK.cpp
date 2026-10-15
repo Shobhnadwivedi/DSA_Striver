@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class TreeNode{
   public:
     int data;
-    Node* next;
+    TreeNode* next;
 
-    Node(int d, Node* n = nullptr){
+    TreeNode(int d, TreeNode* n = nullptr){
         data  = d;
         next = nullptr;
     }   
@@ -17,7 +17,7 @@ class Node{
 
 // when k is given as position
 
-void deleteatK(Node* &head, int k){
+void deleteatK(TreeNode* &head, int k){
 
     // if linked list is empty
     if(head == nullptr){
@@ -27,15 +27,15 @@ void deleteatK(Node* &head, int k){
     // if k=1 ,i.e. head node to be deleted
 
     if(k==1){
-        Node* temp = head;
+        TreeNode* temp = head;
         head = head->next;
         delete temp;
         return;
     }
 
     int cnt=0;
-    Node* prev = nullptr;
-    Node* curr = head;
+    TreeNode* prev = nullptr;
+    TreeNode* curr = head;
 
     while(curr){
         cnt++;
@@ -56,11 +56,11 @@ void deleteatK(Node* &head, int k){
 
 int main(){
 
-    Node* head = new Node(10);
-    Node* second = new Node(20);
-    Node* third = new Node(30);
-    Node* fourth = new Node(40);
-    Node* fifth = new Node(50);
+    TreeNode* head = new TreeNode(10);
+    TreeNode* second = new TreeNode(20);
+    TreeNode* third = new TreeNode(30);
+    TreeNode* fourth = new TreeNode(40);
+    TreeNode* fifth = new TreeNode(50);
 
     head->next = second;
     second->next = third;
@@ -73,7 +73,7 @@ int main(){
 
     deleteatK(head, k);
 
-    Node* temp = head;
+    TreeNode* temp = head;
     while(temp != nullptr){
         cout << temp->data << " ";
         temp = temp->next;

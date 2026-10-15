@@ -1,3 +1,6 @@
+//  There are 2 types of problem    -  1.  finding the longest of all subarrays with sum = k 
+//                                  -  1.  finding count of all subarrays with sum = k
+
 #include <iostream>
 #include <vector>
 #include <unordered_map>

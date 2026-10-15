@@ -49,6 +49,25 @@ nums is sorted in non-decreasing order.
 #include <vector>
 using namespace std;
 
+
+// BRUTE FORCE  - T.C = O(n^2)  S.C = O(1)
+class Solution1 {
+public:
+    int removeDuplicates(vector<int>& nums) {
+
+        for(int i = 1; i< nums.size(); i++){
+            if(nums[i-1] == nums[i]){
+                nums.erase(nums.begin() + i-1 );  // IN c++ erase function is used to remove the element from the vector at the specified position. it take T.C = O(n) as in array all the elements after the erased element are shifted to the left by one position. 
+                i--;                              //  but in python lists  - vec.pop(index) is used to remove the element from the list at the specified index. it also take T.C = O(n).
+            }
+        }
+        return nums.size();
+        
+    }
+};
+
+
+
 // OPTIMAL SOLUTION = TWO POINTER SOLUTION 
 class Solution2 {
     public:

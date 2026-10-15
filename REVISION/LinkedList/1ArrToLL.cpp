@@ -1,17 +1,17 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class TreeNode{
     public:
         int data;
-        Node* next;
+        TreeNode* next;
 
-        Node(int d){
+        TreeNode(int d){
             data = d;
             next = nullptr;
         }
         
-        Node(int d, Node* n){
+        TreeNode(int d, TreeNode* n){
             data = d;
             next = n;
         }
@@ -20,16 +20,16 @@ class Node{
 
 // function that will convert an array to linked list and print it
 void arrToLL(int arr[], int n){
-    Node* head = new Node(arr[0]);
-    Node* temp = head;
+    TreeNode* head = new TreeNode(arr[0]);
+    TreeNode* temp = head;
 
     for(int i=1 ; i<n; i++){
-        temp -> next = new Node(arr[i]);
+        temp -> next = new TreeNode(arr[i]);
         temp = temp->next;
     }
 
     // print the linked list
-    Node* ptr = head;
+    TreeNode* ptr = head;
     while(ptr){
         cout << ptr->data << " ";
         ptr = ptr->next;

@@ -3,13 +3,13 @@ using namespace std;
 
 
 // Node structure for linked list
-class Node{
+class TreeNode{
   public:
     int data;
-    Node* next;
+    TreeNode* next;
 
   
-    Node(int d){
+    TreeNode(int d){
         data = d;
         next = nullptr;
     }
@@ -19,7 +19,7 @@ class Node{
 
 class myStack{
     private:
-        Node* top;
+        TreeNode* top;
         int cnt;
 
     public:
@@ -30,7 +30,7 @@ class myStack{
         }
         
         void push(int x){
-            Node* new_node = new Node(x);
+            TreeNode* new_node = new TreeNode(x);
             new_node->next  = top;
             top = new_node;
             cnt++;
@@ -42,7 +42,7 @@ class myStack{
                 cout<<"Stack Underflow"<<endl;
                 return -1;
             }
-            Node* temp = top;
+            TreeNode* temp = top;
             top = top->next;
             int popped = temp->data;
             delete temp;

@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class TreeNode{
   public:
     int data;
-    Node* next;
+    TreeNode* next;
 
-    Node(int d, Node* n = nullptr){
+    TreeNode(int d, TreeNode* n = nullptr){
         data  = d;
         next = nullptr;
     }
@@ -14,9 +14,9 @@ class Node{
 };
 
 
-void deleteTail(Node* head){
-    Node* temp = head ;
-    Node* prev = new Node(0);
+void deleteTail(TreeNode* head){
+    TreeNode* temp = head ;
+    TreeNode* prev = new TreeNode(0);
     prev->next = head;
 
     while(temp->next != nullptr ){
@@ -36,7 +36,7 @@ void deleteTail(Node* head){
 //      1.  &head is passed as reference  , so that changes that are made in the function are also reflected outside the function
 //      2.  We handle the case when there is only one node separately , it was not handled in the previous approach
 //      3.  We do not create any extra node for prev, (prev is created using new but never deleted, This causes memory leak)
-void deleteTail2(Node* &head){
+void deleteTail2(TreeNode* &head){
     if(head==nullptr){
         return;
     }
@@ -46,8 +46,8 @@ void deleteTail2(Node* &head){
         return;
     }
 
-    Node* temp = head ;
-    Node* prev = nullptr;
+    TreeNode* temp = head ;
+    TreeNode* prev = nullptr;
 
     while(temp->next != nullptr ){
         prev = temp;
@@ -63,11 +63,11 @@ void deleteTail2(Node* &head){
 
 int main(){
 
-    Node* head = new Node(1);
-    Node* second = new Node(2);
-    Node* third = new Node(3);
-    Node* fourth = new Node(4);
-    Node* fifth = new Node(5);
+    TreeNode* head = new TreeNode(1);
+    TreeNode* second = new TreeNode(2);
+    TreeNode* third = new TreeNode(3);
+    TreeNode* fourth = new TreeNode(4);
+    TreeNode* fifth = new TreeNode(5);
 
 
     head->next = second;
@@ -79,7 +79,7 @@ int main(){
     
     deleteTail(head);
 
-    Node* temp = head;
+    TreeNode* temp = head;
     while(temp != nullptr){
         cout<< temp->data << " ";
         temp = temp->next;

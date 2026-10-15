@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
 
-class Node{
+class TreeNode{
  public: 
     int data;
-    Node* next;
+    TreeNode* next;
 
-    Node(int d){
+    TreeNode(int d){
         data= d;
         next = nullptr;
     }
@@ -16,9 +16,9 @@ class Node{
 
 int main(){
 
-    Node* head = new Node(1); 
+    TreeNode* head = new TreeNode(1); 
 
-    Node* second = new Node(2);
+    TreeNode* second = new TreeNode(2);
 
     head->next = second ; // linking first node to second node
 
@@ -26,7 +26,7 @@ int main(){
 
     // delete head of linked list
 
-    Node* var = head->next;
+    TreeNode* var = head->next;
 
     head->next = nullptr;
 
